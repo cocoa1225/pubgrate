@@ -1,10 +1,7 @@
-# URLにアクセスするためのライブラリの読み込み
 require 'open-uri'
-# Nokogiriライブラリの読み込み
 require 'nokogiri'
 require 'discordrb'
 bot = Discordrb::Commands::CommandBot.new token: 'yourtoken', prefix: '!'
-# スクレイピング先のURL
 
 bot.command (:test) do |event,*code|
   name = code[0]
@@ -18,7 +15,6 @@ html = open(url).read do |f|
 end
 # htmlをパース(解析)してオブジェクトを生成
 page = Nokogiri::HTML.parse(html, nil, charset)
-doc = Nokogiri::HTML.parse(html, nil, charset)
 pubgrate = page.search('img.grade-icon')
 
 File.open('file.txt','w') do |f|
@@ -26,7 +22,7 @@ File.open('file.txt','w') do |f|
 end
 
 File.open('file.txt','r').each do |r|
-@bronz = r.include?("BRONZE")
+@bronze = r.include?("BRONZE")
 @silver= r.include?("SILVER")
 @gold = r.include?("GOLD")
 @platinum = r.include?("PLATINUM")
@@ -36,7 +32,7 @@ File.open('file.txt','r').each do |r|
 @top500 = r.include?("TOP500")
 end
 
-if @bronz
+if @bronze
   event.send_message"あなたのレートはブロンズ帯です"
 
 elsif @silver
