@@ -4,9 +4,9 @@ require 'discordrb'
 bot = Discordrb::Commands::CommandBot.new token: 'yourtoken', prefix: '!'
 
 bot.command (:test) do |event,*code|
-  name = code[0]
+  @name = code[0]
 
-url = "https://dak.gg/profile/#{name}"
+url = "https://dak.gg/profile/#{@name}"
 
 charset = nil
 html = open(url).read do |f|
@@ -33,31 +33,31 @@ File.open('file.txt','r').each do |r|
 end
 
 if @bronze
-  event.send_message"あなたのレートはブロンズ帯です"
+  event.send_message"#{@name}のレートはブロンズ帯です"
 
 elsif @silver
-  event.send_message"あなたのレートはシルバー帯です"
+  event.send_message"#{@name}のレートはシルバー帯です"
 
 elsif @gold
-  event.send_message"あなたのレートはゴールド帯です"
+  event.send_message"#{@name}のレートはゴールド帯です"
 
 elsif @platinum
-  event.send_message"あなたのレートはプラチナ帯です"
+  event.send_message"#{@name}のレートはプラチナ帯です"
 
 elsif @diamond
-  event.send_message"あなたのレートはダイアモンド帯です"
+  event.send_message"#{@name}のレートはダイアモンド帯です"
 
 elsif @grand
-  event.send_message"あなたのレートはグランドマスター帯です"
+  event.send_message"#{@name}のレートはグランドマスター帯です"
 
 elsif @top500
-  event.send_message"あなたのレートはTOP500位です"
+  event.send_message"#{@name}のレートはTOP500位です"
 
 elsif @master
-  event.send_message"あなたのレートはマスター帯です"
+  event.send_message"#{@name}のレートはマスター帯です"
 
 else
-  event.send_message"ランク帯が取得できなかった可能性が高いです"
+  event.send_message"ランク帯が取得できなかったか名前が間違っている可能性が高いです"
 end
 end
 
